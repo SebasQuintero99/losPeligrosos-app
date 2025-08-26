@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m streamlit run:*)",
+      "Bash(\"C:\\laragon\\bin\\python\\python-3.10\\python.exe\" -m streamlit run \"C:\\Users\\juans\\OneDrive\\Escritorio\\LEON-AGUILERA\\DESARROLLO\\los_peligrosos_app.py\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
