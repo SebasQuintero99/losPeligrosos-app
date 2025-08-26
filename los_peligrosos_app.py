@@ -10,7 +10,7 @@ st.set_page_config(page_title="Los Peligrosos Neiva", layout="wide")
 st.markdown("""
 <h1 style='text-align: center; font-size: 50px; background: -webkit-linear-gradient(left, #ff4b1f, #1fddff); 
 -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>
-🏌️‍♂️ Torneo Golf – Liquidación <br> <strong>“Los Peligrosos”</strong> ⛳
+🏌️‍♂️ Torneo Golf – Liquidación <br> <strong>"Los Peligrosos Neiva"</strong> ⛳
 </h1>
 """, unsafe_allow_html=True)
 
