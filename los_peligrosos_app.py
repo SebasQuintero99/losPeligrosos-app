@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import math
 
-st.set_page_config(page_title="Los Peligrosos - Liquidación", layout="wide")
+st.set_page_config(page_title="Los Peligrosos Neiva", layout="wide")
 
 # Función para redondear a la decena de mil más cercana
 
