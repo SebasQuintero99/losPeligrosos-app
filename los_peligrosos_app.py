@@ -2,16 +2,109 @@ import streamlit as st
 import pandas as pd
 import math
 
-st.set_page_config(page_title="Los Peligrosos Neiva", layout="wide")
+st.set_page_config(
+    page_title="Los Peligrosos Neiva",
+    page_icon="🏌️‍♂️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # Función para redondear a la decena de mil más cercana
 
-# Título vibrante animado
+# CSS personalizado para diseño moderno
 st.markdown("""
-<h1 style='text-align: center; font-size: 50px; background: -webkit-linear-gradient(left, #ff4b1f, #1fddff); 
--webkit-background-clip: text; -webkit-text-fill-color: transparent;'>
-🏌️‍♂️ Torneo Golf – Liquidación <br> <strong>"Los Peligrosos Neiva"</strong> ⛳
-</h1>
+<style>
+    /* Tema principal */
+    .main {
+        padding-top: 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+    }
+    
+    .stApp {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    
+    /* Header principal */
+    .main-header {
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        padding: 2rem;
+        border-radius: 20px;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+    
+    .main-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, #f39c12, #e74c3c, #9b59b6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .subtitle {
+        color: #ecf0f1;
+        font-size: 1.2rem;
+        font-weight: 300;
+        margin-top: 0;
+    }
+    
+    /* Cards modernas */
+    .modern-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Botones modernos */
+    .stButton > button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    }
+    
+    /* Sidebar mejorado */
+    .css-1d391kg {
+        background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+    }
+    
+    /* Inputs modernos */
+    .stTextInput > div > div > input,
+    .stNumberInput > div > div > input {
+        border-radius: 10px;
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+    
+    .stTextInput > div > div > input:focus,
+    .stNumberInput > div > div > input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+</style>
+
+<div class="main-header">
+    <h1 class="main-title">🏌️‍♂️ TORNEO GOLF ⛳</h1>
+    <p class="subtitle">Sistema de Liquidación - "Los Peligrosos Neiva"</p>
+</div>
 """, unsafe_allow_html=True)
 
 # Función para redondear a la decena de mil más cercana
@@ -103,8 +196,13 @@ def cargar_datos_de_prueba_2():
             "Neto": neto
         })
 
-# Sidebar: configuración
-st.sidebar.header("Configuración del torneo")
+# Sidebar con diseño moderno
+st.sidebar.markdown("""
+<div style='text-align: center; padding: 1rem; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; margin-bottom: 1rem;'>
+    <h2 style='color: white; margin: 0; font-weight: 600;'>⚙️ Configuración</h2>
+    <p style='color: rgba(255,255,255,0.8); margin: 0.5rem 0 0 0; font-size: 0.9rem;'>Torneo de Golf</p>
+</div>
+""", unsafe_allow_html=True)
 # Botones de carga de datos de prueba
 col1, col2 = st.sidebar.columns(2)
 with col1:
@@ -117,8 +215,14 @@ tipo_sabado = st.sidebar.selectbox("Tipo de sábado", ["Regular ($30.000 - x3.00
 multiplicador = 3000 if "Regular" in tipo_sabado else 2000
 case_individual = 30000 if "Regular" in tipo_sabado else 60000
 
-# Ingreso de jugadores solo en la modal
-st.subheader("Ingreso de jugadores")
+# Sección de jugadores con diseño moderno
+st.markdown("""
+<div class="modern-card">
+    <h2 style='color: #2c3e50; margin-bottom: 1rem; font-weight: 600; display: flex; align-items: center;'>
+        📝 Gestión de Jugadores
+    </h2>
+</div>
+""", unsafe_allow_html=True)
 if "jugadores" not in st.session_state:
     st.session_state.jugadores = []
 
@@ -146,10 +250,12 @@ div[data-modal-container='true'] {
 }
 
 div[data-modal-container='true'] > div {
-    background: #0e1117 !important;
-    padding: 40px !important;
-    border-radius: 15px !important;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    padding: 2.5rem !important;
+    border-radius: 20px !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    backdrop-filter: blur(20px) !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }
@@ -251,23 +357,51 @@ if st.session_state.show_modal:
 # Mostrar jugadores y opción para eliminar
 if st.session_state.jugadores:
     df = pd.DataFrame(st.session_state.jugadores)
-    st.subheader("Resumen de jugadores ingresados")
+    
+    st.markdown("""
+    <div class="modern-card">
+        <h3 style='color: #2c3e50; margin-bottom: 1.5rem; font-weight: 600; display: flex; align-items: center;'>
+            📊 Lista de Jugadores Registrados
+        </h3>
+    </div>
+    """, unsafe_allow_html=True)
 
     for i, row in df.iterrows():
-        col1, col2, col3 = st.columns([7, 1, 1])
-        with col1:
-            st.markdown(f"**{i+1}. {row['Nombre']}** – Handicap: {row['Handicap']}, Gross: {row['Gross Total']}, Neto: {row['Neto']}, Putts: {row['Putts']}")
+        st.markdown(f"""
+        <div style='background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); 
+                    border-radius: 15px; padding: 1.5rem; margin: 1rem 0; 
+                    box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+                    border-left: 5px solid #667eea;'>
+            <h4 style='color: #2c3e50; margin: 0 0 0.5rem 0; font-weight: 600;'>
+                🏌️‍♂️ {i+1}. {row['Nombre']}
+            </h4>
+            <div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; color: #666;'>
+                <div><strong>Handicap:</strong> {row['Handicap']}</div>
+                <div><strong>Gross Total:</strong> {row['Gross Total']}</div>
+                <div><strong>Neto:</strong> {row['Neto']}</div>
+                <div><strong>Putts:</strong> {row['Putts']}</div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        col1, col2, col3 = st.columns([6, 1, 1])
         with col2:
-            if st.button("✏️ Editar", key=f"editar_{i}"):
+            if st.button("✏️", key=f"editar_{i}", help="Editar jugador"):
                 st.session_state.jugador_a_editar = i
                 st.session_state.show_modal = True
                 st.rerun()
         with col3:
-            if st.button("❌ Eliminar", key=f"eliminar_{i}"):
+            if st.button("🗑️", key=f"eliminar_{i}", help="Eliminar jugador"):
                 st.session_state.jugadores.pop(i)
                 st.rerun()
 
-    st.subheader("Calcular y Liquidar Torneo")
+    st.markdown("""
+    <div class="modern-card">
+        <h2 style='color: #2c3e50; margin-bottom: 1rem; font-weight: 600; display: flex; align-items: center;'>
+            📊 Cálculo y Liquidación del Torneo
+        </h2>
+    </div>
+    """, unsafe_allow_html=True)
     df = pd.DataFrame(st.session_state.jugadores)
 
     # Calcular Neto de la segunda vuelta para desempates
@@ -311,7 +445,13 @@ if st.session_state.jugadores:
     df["Paga Putts"] = paga_putts_list
     df["Total a Pagar"] = total_individual_list
 
-    st.subheader("Liquidación por jugador")
+    st.markdown("""
+    <div class="modern-card">
+        <h3 style='color: #2c3e50; margin-bottom: 1rem; font-weight: 600; display: flex; align-items: center;'>
+            💰 Liquidación Individual
+        </h3>
+    </div>
+    """, unsafe_allow_html=True)
     # Crear una copia del DataFrame y ajustar el índice para que comience en 1
     df_display = df[["Nombre", "Handicap", "Gross Total", "Neto", "Putts", "Paga Neto", "Paga Putts", "Total a Pagar"]].copy()
     df_display.index = df_display.index + 1  # Ajustar el índice para que comience en 1
@@ -330,22 +470,67 @@ if st.session_state.jugadores:
     ganador_neto = df_neto_sorted.iloc[0]["Nombre"]
     ganador_putts = df_putts_sorted.iloc[0]["Nombre"]
 
-    st.subheader("💰 Resumen económico del torneo")
-    st.markdown(f"**Total jugadores**: {total_jugadores}")
-    st.markdown(f"**Menor Neto**: {menor_neto} ({ganador_neto})")
-    st.markdown(f"**Menor Putts**: {menor_putts} ({ganador_putts})")
-    st.markdown(f"**Total case**: ${total_case:,.0f}")
-    st.markdown(f"**Total a pagar**: ${total_pagos:,.0f}")
-    st.markdown(f"**Recaudo total**: ${total_recaudo:,.0f}")
-    st.markdown(f"**30% atención**: ${atencion:,.0f}")
-    st.markdown(f"**70% premios a repartir**: ${premios:,.0f}")
+    st.markdown(f"""
+    <div style='background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); 
+                color: white; padding: 2rem; border-radius: 15px; margin: 2rem 0; 
+                box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);'>
+        <h3 style='margin: 0 0 1.5rem 0; font-weight: 600; display: flex; align-items: center;'>
+            💰 Resumen Económico del Torneo
+        </h3>
+        <div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;'>
+            <div style='background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px;'>
+                <div style='font-size: 0.9rem; opacity: 0.8;'>Total Jugadores</div>
+                <div style='font-size: 1.8rem; font-weight: 600;'>{total_jugadores}</div>
+            </div>
+            <div style='background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px;'>
+                <div style='font-size: 0.9rem; opacity: 0.8;'>Menor Neto</div>
+                <div style='font-size: 1.8rem; font-weight: 600;'>{menor_neto}</div>
+                <div style='font-size: 0.8rem; opacity: 0.7;'>{ganador_neto}</div>
+            </div>
+            <div style='background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px;'>
+                <div style='font-size: 0.9rem; opacity: 0.8;'>Menor Putts</div>
+                <div style='font-size: 1.8rem; font-weight: 600;'>{menor_putts}</div>
+                <div style='font-size: 0.8rem; opacity: 0.7;'>{ganador_putts}</div>
+            </div>
+        </div>
+        <div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;'>
+            <div style='text-align: center;'>
+                <div style='font-size: 0.9rem; opacity: 0.8;'>Total Case</div>
+                <div style='font-size: 1.5rem; font-weight: 600;'>${total_case:,.0f}</div>
+            </div>
+            <div style='text-align: center;'>
+                <div style='font-size: 0.9rem; opacity: 0.8;'>Total a Pagar</div>
+                <div style='font-size: 1.5rem; font-weight: 600;'>${total_pagos:,.0f}</div>
+            </div>
+            <div style='text-align: center;'>
+                <div style='font-size: 0.9rem; opacity: 0.8;'>Recaudo Total</div>
+                <div style='font-size: 1.5rem; font-weight: 600;'>${total_recaudo:,.0f}</div>
+            </div>
+            <div style='text-align: center;'>
+                <div style='font-size: 0.9rem; opacity: 0.8;'>30% Atención</div>
+                <div style='font-size: 1.5rem; font-weight: 600;'>${atencion:,.0f}</div>
+            </div>
+            <div style='text-align: center;'>
+                <div style='font-size: 0.9rem; opacity: 0.8;'>70% Premios</div>
+                <div style='font-size: 1.5rem; font-weight: 600;'>${premios:,.0f}</div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
     # Distribución de premios
-    st.subheader("🏆 Premiación")
+    st.markdown("""
+    <div style='background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%); 
+                color: white; padding: 2rem; border-radius: 15px; margin: 2rem 0; 
+                box-shadow: 0 10px 30px rgba(243, 156, 18, 0.3);'>
+        <h3 style='margin: 0 0 1.5rem 0; font-weight: 600; display: flex; align-items: center;'>
+            🏆 Premiación del Torneo
+        </h3>
+    """, unsafe_allow_html=True)
 
     if total_jugadores <= 12:
         # Regla para 12 o menos jugadores: premia a los 2 primeros
-        st.markdown("**Regla aplicada**: 12 o menos jugadores. Se premian los 2 primeros puestos (65% y 35%).")
+        st.markdown("<div style='background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px; margin-bottom: 1rem;'><strong>Regla aplicada:</strong> 12 o menos jugadores. Se premian los 2 primeros puestos (65% y 35%).</div>", unsafe_allow_html=True)
         df_top = df_neto_sorted.head(2)
         premios_porcentajes = [0.65, 0.35]
         premios_distribuidos = 0
@@ -356,10 +541,17 @@ if st.session_state.jugadores:
             else:  # Primer lugar
                 monto = redondear_decenas_mil(premios * premios_porcentajes[i])
             premios_distribuidos += monto
-            st.markdown(f"**{i+1}° lugar – {jugador['Nombre']}**: ${monto:,.0f}")
+            trofeo = ['🥇', '🥈'][i]
+            st.markdown(f"""<div style='background: rgba(255,255,255,0.3); padding: 1rem; border-radius: 10px; margin: 0.5rem 0; display: flex; justify-content: space-between; align-items: center;'>
+                <span style='font-weight: 600;'>{trofeo} {i+1}° lugar - {jugador['Nombre']}</span>
+                <span style='font-size: 1.2rem; font-weight: bold;'>${monto:,.0f}</span>
+            </div>""", unsafe_allow_html=True)
+        
+        # Cerrar la sección de premiación
+        st.markdown("</div>", unsafe_allow_html=True)
     else:
         # Regla para más de 12 jugadores: premia a los 3 primeros, muestra top 5
-        st.markdown("**Regla aplicada**: Más de 12 jugadores. Se premian los 3 primeros puestos (50%, 30%, 20%).")
+        st.markdown("<div style='background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px; margin-bottom: 1rem;'><strong>Regla aplicada:</strong> Más de 12 jugadores. Se premian los 3 primeros puestos (50%, 30%, 20%).</div>", unsafe_allow_html=True)
         df_top5 = df_neto_sorted.head(5)
         premios_top3 = [0.50, 0.30, 0.20]
         premios_distribuidos = 0
@@ -371,8 +563,18 @@ if st.session_state.jugadores:
                 else:
                     monto = redondear_decenas_mil(premios * premios_top3[i])
                 premios_distribuidos += monto
-                st.markdown(f"**{i+1}° lugar – {jugador['Nombre']}**: ${monto:,.0f}")
+                trofeo = ['🥇', '🥈', '🥉'][i]
+                st.markdown(f"""<div style='background: rgba(255,255,255,0.3); padding: 1rem; border-radius: 10px; margin: 0.5rem 0; display: flex; justify-content: space-between; align-items: center;'>
+                    <span style='font-weight: 600;'>{trofeo} {i+1}° lugar - {jugador['Nombre']}</span>
+                    <span style='font-size: 1.2rem; font-weight: bold;'>${monto:,.0f}</span>
+                </div>""", unsafe_allow_html=True)
             else:  # Para 4° y 5° lugar, solo mostrar posición y nombre
-                st.markdown(f"**{i+1}° lugar – {jugador['Nombre']}**")
+                st.markdown(f"""<div style='background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px; margin: 0.5rem 0; display: flex; justify-content: space-between; align-items: center;'>
+                    <span style='font-weight: 600;'>🏅 {i+1}° lugar - {jugador['Nombre']}</span>
+                    <span style='font-style: italic; opacity: 0.7;'>Posición de Honor</span>
+                </div>""", unsafe_allow_html=True)
+
+    # Cerrar la sección de premiación
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
