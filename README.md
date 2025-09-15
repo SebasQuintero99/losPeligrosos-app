@@ -1,64 +1,93 @@
-# 🏌️‍♂️ Golf Tournament System - Modern Stack
+# 🏌️‍♂️ Golf Tournament Backend API
 
-Sistema moderno de liquidación de torneos de golf con Next.js + FastAPI
+Modern FastAPI backend for golf tournament management system with PostgreSQL.
 
-## 📦 Stack Tecnológico
+## 🚀 Tech Stack
 
-### Backend
-- **FastAPI** - API REST moderna y rápida
-- **SQLAlchemy** - ORM para Python
-- **PostgreSQL** - Base de datos relacional
-- **JWT** - Autenticación stateless
-- **WebSockets** - Actualizaciones en tiempo real
+- **FastAPI** - Modern Python web framework
+- **SQLAlchemy** - SQL toolkit and ORM
+- **PostgreSQL** - Production database
+- **JWT** - Authentication and authorization
+- **WebSockets** - Real-time updates
+- **Pydantic** - Data validation
 
-### Frontend  
-- **Next.js 14** - Framework React con SSR
-- **TypeScript** - Tipado estático
-- **Tailwind CSS** - Diseño moderno y responsivo
-- **shadcn/ui** - Componentes UI de alta calidad
-- **TanStack Query** - Estado del servidor
-- **Zustand** - Estado local
+## 📋 Features
 
-## 🚀 Fase de Desarrollo
+- ✨ **Multi-tournament management**
+- 👥 **Role-based access** (Admin authentication)
+- 🔐 **JWT authentication** with bcrypt
+- ⚡ **Real-time updates** via WebSocket
+- 📊 **Automatic score calculations**
+- 🏆 **Tournament liquidation system**
+- 🔄 **SQLAlchemy ORM** with migrations
 
-### ✅ Fase 1: Backend Foundation (Semanas 1-2)
-- [x] Estructura del proyecto
-- [ ] Configuración FastAPI
-- [ ] Modelos de base de datos
-- [ ] Migración de lógica de cálculo
-- [ ] APIs básicas
-
-### 🔄 Fase 2: Frontend Base (Semanas 3-4)  
-- [ ] Setup Next.js + TypeScript
-- [ ] Componentes UI base
-- [ ] Páginas principales
-- [ ] Integración con API
-
-### 🎯 Fase 3: Funcionalidades Avanzadas (Semanas 5-6)
-- [ ] Autenticación JWT
-- [ ] WebSockets tiempo real
-- [ ] PWA capabilities
-- [ ] Testing y deployment
-
-## 📋 Comandos de Desarrollo
+## 🛠️ Development
 
 ```bash
-# Backend
-cd backend
+# Install dependencies
 pip install -r requirements.txt
-uvicorn app.main:app --reload
 
-# Frontend
-cd frontend  
-npm install
-npm run dev
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your database credentials
+
+# Run development server
+uvicorn main_postgres:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-## 🌟 Funcionalidades Principales
+## ⚙️ Environment Variables
 
-- ✨ **Multi-torneo**: Gestión de múltiples torneos simultáneos
-- 👥 **Roles**: Admin (crea torneos) y Jugadores (se unen con código)
-- 📱 **Responsive**: Diseño mobile-first
-- ⚡ **Tiempo Real**: Updates instantáneos de scores
-- 🔐 **Seguro**: Autenticación JWT y validaciones
-- 📊 **Dashboard**: Analytics y reportes avanzados
+```env
+DATABASE_URL=postgresql://postgres:password@hostname:5432/railway
+SECRET_KEY=your-super-secret-jwt-key-at-least-32-characters-long
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=480
+PORT=8000
+HOST=0.0.0.0
+ENVIRONMENT=production
+```
+
+## 🚀 Railway Deployment
+
+1. Connect this repository to Railway
+2. Add PostgreSQL service
+3. Set environment variables
+4. Deploy automatically
+
+## 📚 API Endpoints
+
+### Authentication
+- `POST /admin/login` - Admin login
+- `POST /admin/register` - Register admin (development)
+
+### Tournaments
+- `POST /admin/tournament` - Create tournament
+- `GET /admin/tournaments` - List all tournaments
+- `GET /tournament/{code}` - Get tournament by code
+- `PUT /admin/tournament/{id}/complete` - Complete tournament
+
+### Players
+- `POST /player/join` - Join tournament
+- `PUT /player/{id}/scores` - Update player scores
+- `GET /tournament/{id}/players` - Get tournament players
+
+### WebSocket
+- `WS /ws/{tournament_id}` - Real-time tournament updates
+
+### Health
+- `GET /health` - Service health check
+
+## 🗄️ Database Schema
+
+- **AdminUser** - Admin authentication
+- **Tournament** - Tournament information
+- **Player** - Player registration and scores
+- **Liquidation** - Tournament results and payouts
+
+## 🔗 Related
+
+- **Frontend**: [Golf Tournament Frontend](https://github.com/SebasQuintero99/golf-tournament-frontend)
+
+---
+
+Built with ❤️ for golf tournament management
