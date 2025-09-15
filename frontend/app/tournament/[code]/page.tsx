@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Button } from '../../../components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card'
-import MainLayout from '../../../components/layout/main-layout'
-import { apiClient } from '../../../lib/api-client'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import MainLayout from '@/components/layout/main-layout'
+import { apiClient } from '@/lib/api-client'
 import { useParams, useRouter } from 'next/navigation'
 
 export default function TournamentPublicPage() {

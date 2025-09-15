@@ -1,13 +1,13 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Button } from '../../components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card'
-import { Input } from '../../components/ui/input'
-import MainLayout from '../../components/layout/main-layout'
-import { apiClient } from '../../lib/api-client'
-import { useWebSocket, WebSocketMessage } from '../../hooks/useWebSocket'
-import AdminLogin from '../../components/AdminLogin'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import MainLayout from '@/components/layout/main-layout'
+import { apiClient } from '@/lib/api-client'
+import { useWebSocket, WebSocketMessage } from '@/hooks/useWebSocket'
+import AdminLogin from '@/components/AdminLogin'
 import { useRouter } from 'next/navigation'
 
 export default function AdminPage() {
